@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>UDPLab - Little Sheeeeep</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="CharlotteYang"><meta name="msapplication-TileImage" content="/img/logo.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="CharlotteYang"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="UDP协议网络编程实验实验时间：2023.10.8实验目的本实验旨在利用Socket编写一个基于UDP协议的程序，实现即时通信。具体目标如下：  学习Server&amp;#x2F;Client模型，以及端口在网络通信中的重要作用； 掌握利用Socket编写基于UDP协议的程序的方法。 学习无连接通信方式，理解与面向连接的通信方式的区别。  实验原理UDP即时通信流程图如下：   在流程图中，UDPCli"><meta property="og:type" content="blog"><meta property="og:title" content="UDPLab"><meta property="og:url" content="https://llragdoll.github.io/2023/10/25/UDPLab/"><meta property="og:site_name" content="Little Sheeeeep"><meta property="og:description" content="UDP协议网络编程实验实验时间：2023.10.8实验目的本实验旨在利用Socket编写一个基于UDP协议的程序，实现即时通信。具体目标如下：  学习Server&amp;#x2F;Client模型，以及端口在网络通信中的重要作用； 掌握利用Socket编写基于UDP协议的程序的方法。 学习无连接通信方式，理解与面向连接的通信方式的区别。  实验原理UDP即时通信流程图如下：   在流程图中，UDPCli"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://llragdoll.github.io/Users/apple/Library/Application%20Support/typora-user-images/image-20231009154055192.png"><meta property="og:image" content="https://llragdoll.github.io/Users/apple/Library/Application%20Support/typora-user-images/image-20231009161225802.png"><meta property="og:image" content="https://llragdoll.github.io/Users/apple/Library/Application%20Support/typora-user-images/image-20231009161444414.png"><meta property="og:image" content="https://llragdoll.github.io/Users/apple/Library/Application%20Support/typora-user-images/image-20231009161941539.png"><meta property="og:image" content="https://llragdoll.github.io/Users/apple/Library/Application%20Support/typora-user-images/image-20231009161913274.png"><meta property="og:image" content="https://llragdoll.github.io/Users/apple/Library/Application%20Support/typora-user-images/image-20231009162243899.png"><meta property="og:image" content="https://llragdoll.github.io/Users/apple/Library/Application%20Support/typora-user-images/image-20231009162407909.png"><meta property="og:image" content="https://llragdoll.github.io/Users/apple/Library/Application%20Support/typora-user-images/image-20231009162503752.png"><meta property="og:image" content="https://llragdoll.github.io/Users/apple/Library/Application%20Support/typora-user-images/image-20231009162542138.png"><meta property="og:image" content="https://llragdoll.github.io/Users/apple/Library/Application%20Support/typora-user-images/image-20231009162706168.png"><meta property="og:image" content="https://llragdoll.github.io/Users/apple/Library/Application%20Support/typora-user-images/image-20231009162808554.png"><meta property="article:published_time" content="2023-10-25T07:44:58.000Z"><meta property="article:modified_time" content="2023-10-25T07:49:24.710Z"><meta property="article:author" content="Charlotte Yang"><meta property="article:tag" content="study"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://llragdoll.github.io/Users/apple/Library/Application%20Support/typora-user-images/image-20231009154055192.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://llragdoll.github.io/2023/10/25/UDPLab/"},"headline":"UDPLab","image":["https://llragdoll.github.io/Users/apple/Library/Application%20Support/typora-user-images/image-20231009154055192.png","https://llragdoll.github.io/Users/apple/Library/Application%20Support/typora-user-images/image-20231009161225802.png","https://llragdoll.github.io/Users/apple/Library/Application%20Support/typora-user-images/image-20231009161444414.png","https://llragdoll.github.io/Users/apple/Library/Application%20Support/typora-user-images/image-20231009161941539.png","https://llragdoll.github.io/Users/apple/Library/Application%20Support/typora-user-images/image-20231009161913274.png","https://llragdoll.github.io/Users/apple/Library/Application%20Support/typora-user-images/image-20231009162243899.png","https://llragdoll.github.io/Users/apple/Library/Application%20Support/typora-user-images/image-20231009162407909.png","https://llragdoll.github.io/Users/apple/Library/Application%20Support/typora-user-images/image-20231009162503752.png","https://llragdoll.github.io/Users/apple/Library/Application%20Support/typora-user-images/image-20231009162542138.png","https://llragdoll.github.io/Users/apple/Library/Application%20Support/typora-user-images/image-20231009162706168.png","https://llragdoll.github.io/Users/apple/Library/Application%20Support/typora-user-images/image-20231009162808554.png"],"datePublished":"2023-10-25T07:44:58.000Z","dateModified":"2023-10-25T07:49:24.710Z","author":{"@type":"Person","name":"Charlotte Yang"},"publisher":{"@type":"Organization","name":"Little Sheeeeep","logo":{"@type":"ImageObject","url":"https://llragdoll.github.io/img/logo.svg"}},"description":"UDP协议网络编程实验实验时间：2023.10.8实验目的本实验旨在利用Socket编写一个基于UDP协议的程序，实现即时通信。具体目标如下：  学习Server&#x2F;Client模型，以及端口在网络通信中的重要作用； 掌握利用Socket编写基于UDP协议的程序的方法。 学习无连接通信方式，理解与面向连接的通信方式的区别。  实验原理UDP即时通信流程图如下：   在流程图中，UDPCli"}</script><link rel="canonical" href="https://llragdoll.github.io/2023/10/25/UDPLab/"><link rel="icon" href="/img/favicon.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Little Sheeeeep" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-10-25T07:44:58.000Z" title="2023/10/25 15:44:58">2023-10-25</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-10-25T07:49:24.710Z" title="2023/10/25 15:49:24">2023-10-25</time></span><span class="level-item">6 minutes read (About 943 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">UDPLab</h1><div class="content"><h1 id="UDP协议网络编程实验"><a href="#UDP协议网络编程实验" class="headerlink" title="UDP协议网络编程实验"></a>UDP协议网络编程实验</h1><h5 id="实验时间：2023-10-8"><a href="#实验时间：2023-10-8" class="headerlink" title="实验时间：2023.10.8"></a>实验时间：2023.10.8</h5><h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><p>本实验旨在利用Socket编写一个基于UDP协议的程序，实现即时通信。具体目标如下：</p>
+<ol>
+<li>学习Server&#x2F;Client模型，以及端口在网络通信中的重要作用；</li>
+<li>掌握利用Socket编写基于UDP协议的程序的方法。</li>
+<li>学习无连接通信方式，理解与面向连接的通信方式的区别。</li>
+</ol>
+<h2 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h2><p>UDP即时通信流程图如下：</p>
+<img src="/Users/apple/Library/Application Support/typora-user-images/image-20231009154055192.png" alt="image-20231009154055192" style="zoom:50%;" />
+
+<p>在流程图中，UDPClient类实现了客户机，UDPServer类实现了服务器。客户机通过端口号5555访问服务器，而客户机端口由系统自动赋予。<strong>实验时必须首先启动服务器。</strong>DatagramSocket类代表UDP数据对象，DatagramPacket类代表UDP协议对象，包含了代表UDP端口的两个属性。采用无连接服务，直接和对方进行通信，主要方法包括<code>send(DatagramPacket)和receive(DatagramPacket)</code>.</p>
+<ol>
+<li><p>UDPServer类</p>
+<ul>
+<li><p>创建Socket，创建时需提供端口号</p>
+<p><code>DatagramSocket server=new DatagramSocket(5555);</code></p>
+</li>
+<li><p>创建UDP数据包缓存区,存放应用数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">byte</span>[] buffer=<span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">101</span>];</span><br><span class="line">   <span class="keyword">private</span> DatagramPacket request;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>利用Socket收发数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">server.receive(request);</span><br><span class="line">server.send(request);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>UDPClient类</p>
+<ul>
+<li><p>获取UDP服务器地址对象并且进行地址解析，从点分十进制IP地址或者域名获取服务器IP地址对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> InetAddress server;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">btnConnectActionPerformed</span><span class="params">(ActionEvent e)</span> &#123;</span><br><span class="line">		<span class="type">String</span> <span class="variable">serverIP</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			serverIP = <span class="built_in">this</span>.textFieldIP.getText();</span><br><span class="line">			server = InetAddress.getByName(serverIP);</span><br><span class="line">			...</span><br><span class="line">		&#125; <span class="keyword">catch</span> (UnknownHostException ue) &#123;</span><br><span class="line">			...</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建Socket对象，不需要提供端口号</p>
+<p><code>DatagramSocket client=new DatagramSocket();</code></p>
+</li>
+<li><p>创建UDP数据包缓存区,存放应用数据,需要指定服务器地址和端口号</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> DatagramPacket request, response;</span><br><span class="line"><span class="keyword">private</span> <span class="type">byte</span>[] bufferSended;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">btnSendActionPerformed</span><span class="params">(ActionEvent e)</span> &#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			bufferSended = <span class="built_in">this</span>.textMessage.getText().getBytes();</span><br><span class="line">			client = <span class="keyword">new</span> <span class="title class_">DatagramSocket</span>();<span class="comment">// client</span></span><br><span class="line">			request = <span class="keyword">new</span> <span class="title class_">DatagramPacket</span>(bufferSended, bufferSended.length,</span><br><span class="line">					server, <span class="number">5555</span>);</span><br><span class="line">			...</span><br><span class="line">		&#125; ...</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>利用Socket收发数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// send发送数据</span></span><br><span class="line">client.send(request);   </span><br><span class="line"><span class="built_in">this</span>.textMessage.setText(<span class="string">&quot;&quot;</span>);</span><br><span class="line"><span class="comment">// receive</span></span><br><span class="line">client.receive(response);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><h4 id="实验地点："><a href="#实验地点：" class="headerlink" title="实验地点："></a>实验地点：</h4><p>​	济事楼330机房</p>
+<h4 id="实验设备："><a href="#实验设备：" class="headerlink" title="实验设备："></a>实验设备：</h4><p>​	PC一台，IntelliJ IDEA IDE</p>
+<h2 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h2><ol>
+<li>实现客户端和服务端编程，即UDPClient类和UDPServer两个类</li>
+<li>进行实时通信测试交互。先运行UDPServer类，再运行UDPClient类，然后在客户端界面中输入要发送的字符串信息，在服务端观察接收，实现即时通信。</li>
+</ol>
+<h2 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h2><p>运行IntelliJ IDEA，创建Socket项目。</p>
+<ol>
+<li><p>在main&#x2F;src&#x2F;java下创建软件包<code>edu.tongji.networklab.udp</code></p>
+<img src="/Users/apple/Library/Application Support/typora-user-images/image-20231009161225802.png" alt="image-20231009161225802" style="zoom: 33%;" />
+
+<ol start="2">
+<li>在软件包中创建Java类<code>UdpClient</code></li>
+</ol>
+<img src="/Users/apple/Library/Application Support/typora-user-images/image-20231009161444414.png" alt="image-20231009161444414" style="zoom:33%;" />
+
+<ol start="3">
+<li><p>输入UdpClient类代码，用服务器下文件完全覆盖并保存编译。</p>
+<img src="/Users/apple/Library/Application Support/typora-user-images/image-20231009161941539.png" alt="image-20231009161941539" style="zoom:33%;" />
+</li>
+<li><p>重复2和3步骤，创建Java类<code>UdpServer</code></p>
+<img src="/Users/apple/Library/Application Support/typora-user-images/image-20231009161913274.png" alt="image-20231009161913274" style="zoom:33%;" />
+</li>
+<li><p>运行代码，进行UDP协议下的即时通信</p>
+<ul>
+<li><p>运行UdpServer类<strong>（必须先于UdpClient类运行）</strong>点击右上角运行按钮</p>
+</li>
+<li><img src="/Users/apple/Library/Application Support/typora-user-images/image-20231009162243899.png" alt="image-20231009162243899" style="zoom: 33%;" />
+
+<img src="/Users/apple/Library/Application Support/typora-user-images/image-20231009162407909.png" alt="image-20231009162407909" style="zoom:33%;" />
+</li>
+<li><p>运行UdpClient类，点击右上角运行按钮，弹出客户端Swing界面</p>
+<img src="/Users/apple/Library/Application Support/typora-user-images/image-20231009162503752.png" alt="image-20231009162503752" style="zoom:33%;" />
+
+<img src="/Users/apple/Library/Application Support/typora-user-images/image-20231009162542138.png" alt="image-20231009162542138" style="zoom:33%;" />
+</li>
+<li><p>点击连接，在文本框输入HelloWorld并点击发送，客户端接收区显示发送文本</p>
+<img src="/Users/apple/Library/Application Support/typora-user-images/image-20231009162706168.png" alt="image-20231009162706168" style="zoom:33%;" />
+
+<img src="/Users/apple/Library/Application Support/typora-user-images/image-20231009162808554.png" alt="image-20231009162808554" style="zoom:33%;" />
+
+<p>UdpServer控制台显示收到客户端请求数据“Hello World”，实验成功！</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="实验结论"><a href="#实验结论" class="headerlink" title="实验结论"></a>实验结论</h2><ol>
+<li><p>与TCP面向连接通信不同，UDP不需要在通信前建立连接，显得更加轻量、灵活，适用于那些对实时性要求较高，可以容忍一定数据丢失的场景。</p>
+</li>
+<li><p>UDP编程更加简洁明了，send()方法用于发送，receive()方法用于接收。</p>
+</li>
+<li><p>Socket接口类中已经实现了UDP协议相关的一些对象，它提供了创建、传输数据和管理端口的功能，使得程序能够在网络上进行有效的数据交换。</p>
+</li>
+</ol>
+</div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/study/">study</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2023/10/25/EthernetLab/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">EthernetLab</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2023/10/25/TCPLab/"><span class="level-item">TCPLab</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div><script>var disqus_config = function () {
+            this.page.url = 'https://llragdoll.github.io/2023/10/25/UDPLab/';
+            this.page.identifier = '2023/10/25/UDPLab/';
+        };
+        (function() {
+            var d = document, s = d.createElement('script');  
+            s.src = '//' + '🐶' + '.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/avatar.svg" alt="CharlotteYang"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">CharlotteYang</p><p class="is-size-6 is-block">Be happy😊</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Shanghai</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">6</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">2</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/llRagdoll" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/llRagdoll"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#UDP协议网络编程实验"><span class="level-left"><span class="level-item">1</span><span class="level-item">UDP协议网络编程实验</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#实验目的"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">实验目的</span></span></a></li><li><a class="level is-mobile" href="#实验原理"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">实验原理</span></span></a></li><li><a class="level is-mobile" href="#实验环境"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">实验环境</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#实验设备："><span class="level-left"><span class="level-item">1.3.1</span><span class="level-item">实验设备：</span></span></a></li></ul></li><li><a class="level is-mobile" href="#实验内容"><span class="level-left"><span class="level-item">1.4</span><span class="level-item">实验内容</span></span></a></li><li><a class="level is-mobile" href="#实验步骤"><span class="level-left"><span class="level-item">1.5</span><span class="level-item">实验步骤</span></span></a></li><li><a class="level is-mobile" href="#实验结论"><span class="level-left"><span class="level-item">1.6</span><span class="level-item">实验结论</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><!--!--><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/research/"><span class="tag">research</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/study/"><span class="tag">study</span><span class="tag">5</span></a></div></div></div></div></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-10-25T07:47:05.000Z">2023-10-25</time></p><p class="title"><a href="/2023/10/25/dataExamineLab/">dataExamineLab</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-10-25T07:46:34.000Z">2023-10-25</time></p><p class="title"><a href="/2023/10/25/EthernetLab/">EthernetLab</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-10-25T07:44:58.000Z">2023-10-25</time></p><p class="title"><a href="/2023/10/25/UDPLab/">UDPLab</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-10-25T07:44:44.000Z">2023-10-25</time></p><p class="title"><a href="/2023/10/25/TCPLab/">TCPLab</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-10-25T07:40:03.000Z">2023-10-25</time></p><p class="title"><a href="/2023/10/25/imageGenerator/">imageGenerator</a></p></div></article></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Little Sheeeeep" height="28"></a><p class="is-size-7"><span>&copy; 2023 Charlotte Yang</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
