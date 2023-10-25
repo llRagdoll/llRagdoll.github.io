@@ -29,92 +29,14 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Little Sheeeeep" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item is-active" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-10-25T07:47:05.000Z" title="2023/10/25 15:47:05">2023-10-25</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-10-25T08:01:28.275Z" title="2023/10/25 16:01:28">2023-10-25</time></span><span class="level-item">11 minutes read (About 1694 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/10/25/dataExamineLab/">dataExamineLab</a></p><div class="content"><h1 id="异步串联通信收发-奇偶数据校验实验"><a href="#异步串联通信收发-奇偶数据校验实验" class="headerlink" title="异步串联通信收发&amp;奇偶数据校验实验"></a>异步串联通信收发&amp;奇偶数据校验实验</h1><h5 id="实验时间：2023-10-20"><a href="#实验时间：2023-10-20" class="headerlink" title="实验时间：2023.10.20"></a>实验时间：2023.10.20</h5><h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><p>  实验目的旨在通过使用计算机的串行口，展示两台计算机之间字符的传输，深入解释通信的基本原理，并强调了物理层的作用。 链路层的数据校验是一种检测数据是否正确的方法，它可以提高数据通信的可靠性和质量。数据校验在链路层有重要的作用。奇偶校验是一种使用异步串行传输的数据校验方式，它可以通过改变奇偶校验参数来演示数据校验的效果。实验具体目的包括:</p>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Little Sheeeeep" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item is-active" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-10-25T07:47:05.000Z" title="2023/10/25 15:47:05">2023-10-25</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-10-25T10:18:55.829Z" title="2023/10/25 18:18:55">2023-10-25</time></span><span class="level-item">11 minutes read (About 1695 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/10/25/dataExamineLab/">dataExamineLab</a></p><div class="content"><h1 id="异步串联通信收发-奇偶数据校验实验"><a href="#异步串联通信收发-奇偶数据校验实验" class="headerlink" title="异步串联通信收发&amp;奇偶数据校验实验"></a>异步串联通信收发&amp;奇偶数据校验实验</h1><h5 id="实验时间：2023-10-20"><a href="#实验时间：2023-10-20" class="headerlink" title="实验时间：2023.10.20"></a>实验时间：2023.10.20</h5><h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><p>  实验目的旨在通过使用计算机的串行口，展示两台计算机之间字符的传输，深入解释通信的基本原理，并强调了物理层的作用。 链路层的数据校验是一种检测数据是否正确的方法，它可以提高数据通信的可靠性和质量。数据校验在链路层有重要的作用。奇偶校验是一种使用异步串行传输的数据校验方式，它可以通过改变奇偶校验参数来演示数据校验的效果。实验具体目的包括:</p>
 <ol>
 <li>理解异步串行通信原理</li>
 <li>对RS-232通信标准和帧格式的熟悉</li>
 <li>学习通信参数如波特率的作用和使用</li>
 <li>学习和掌握奇偶校验的原理和方法</li>
 <li>了解数据校验在数据通信中的意义和作用，加深对链路层功能的理解</li>
-</ol>
-<h2 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h2><ul>
-<li><strong>串行传输模式</strong></li>
-</ul>
-<blockquote>
-<p>串行传输模式是一种通信方式，其中每个通信用户独占一个通信信道，按顺序逐位地发送二进制数据，每次传输一个二进制位（0或1）。这种通信方式广泛用于远程通信。</p>
-<p>在实际应用中，串行传输模式分为同步串行传输模式和异步串行传输模式。同步串行传输模式要求通信的发送方和接收方在时间基准上保持一致。而异步串行传输模式允许通信的两端使用不同的时间模式，传输前无需协调，只需直接发送数据，而不需要等待对方的响应。在两个数据包之间插入间隔符号以作为分隔。</p>
-</blockquote>
-<ul>
-<li><strong>RS-232接口</strong></li>
-</ul>
-<p>RS-232传输对象是字符,每次传输一个字符，同时支持连续传输多个字符。在RS-232的异步串行传输模式中，电压被用作物理信号来传递数据，电压的状态通常在+15V到-15V之间变化。其信号状态标准如下：</p>
-<ul>
-<li><p>空闲状态的信号使用负电压来表示。</p>
-</li>
-<li><p>数位0则以正电压来表示。</p>
-</li>
-<li><p>数位1则以负电压来表示.</p>
-</li>
-</ul>
-<p>![image-20231020212623558](&#x2F;Users&#x2F;apple&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20231020212623558.png)</p>
-<ul>
-<li><strong>差错控制技术</strong>：奇偶数据校验是一种检测数据传输中是否出现错误的方法。它根据数据中的数位1的个数是奇数还是偶数来确定是否有错误。</li>
-<li><strong>校验位和码字</strong>：奇偶校验在数据的末尾添加一个数位，叫做校验位。校验位的值取决于数据中的数位1的个数的奇偶性,数据和校验位组成了一个新的数据–码字.奇偶校验保证了码字中的数位1的个数总是一样的奇数或者偶数。</li>
-<li><strong>奇校验和偶校验</strong>：奇偶校验有两种类型，一种是奇校验，一种是偶校验。奇校验要求码字中的数位1的个数是奇数，偶校验要求码字中的数位1的个数是偶数。奇偶校验通常用于传输单个字符，也就是八位二进制数。在数据通信时，发送端要把码字发送出去，接收端要对码字进行计算。如果码字中的数位1的个数符合预期的奇偶性，那么就说明没有错误；如果不符合，那么就说明有错误。</li>
-</ul>
-<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><h4 id="实验地点："><a href="#实验地点：" class="headerlink" title="实验地点："></a>实验地点：</h4><p>​	济事楼330机房</p>
-<h4 id="实验设备："><a href="#实验设备：" class="headerlink" title="实验设备："></a>实验设备：</h4><p>​    两台带串口的PC,一根串行交叉线,串口调试软件</p>
-<p>​	实验拓扑结构如下:</p>
-<img src="/Users/apple/Library/Application Support/typora-user-images/image-20231021105532895.png" alt="image-20231021105532895" style="zoom:50%;" />
-
-<h2 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h2><p>进行两台计算机之间的串行通信，且控制奇偶校验参数,两主机间发送字符串,具体分为两步:</p>
-<ol>
-<li><p>使用不同校验方式通信。观察一方使用奇校验，另一方不使用校验的通信结果。</p>
-</li>
-<li><p>使用相同校验方式通信。双方使用偶校验的通信,观察结果。</p>
-</li>
-</ol>
-<h2 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h2><ol>
-<li><p>将两台计算机的COM口用串口反接接线连起来.</p>
-</li>
-<li><p>运行串口调试软件</p>
-</li>
-<li><p>使用不同校验位进行通信</p>
-<ul>
-<li><p>Host2使用偶校验,建立异步串行传输连接.通信参数设置为:波特率(9600)、偶校验、数据位(8)、停止位(1)</p>
-</li>
-<li><p>Host1不使用校验位,建立异步串行传输连接.通信参数设置为:波特率(9600)、无校验位、数据位(8)、停止位(1)</p>
-</li>
-<li><p>点击建立连接，可以看到绿色状态显示。</p>
-</li>
-<li><p>Host1收发字符。在发送区域输入 “13579”，连续点击 “发送” 按钮发送多组字符。</p>
-</li>
-<li><p>Host2收发字符。在发送区域输入 “02468”，连续点击 “发送” 按钮发送多组字符。</p>
-</li>
-<li><p>观察两台主机的接收区域显示</p>
-</li>
-</ul>
-<p>Host1接收到了由Host2发送的多串字符串 “02468”，接收端采用无校验位，这不会影响接收带有校验位的数据。</p>
-<p>Host2则接收到了乱码。这是因为接收端采用了偶校验位，它会对接收到的数据进行校验。</p>
-<img src="/Users/apple/Library/Application Support/typora-user-images/image-20231022170434562.png" alt="image-20231022170434562" style="zoom: 33%;" />
-</li>
-<li><p>使用相同校验位进行通信</p>
-<ul>
-<li>修改Host1的通信参数为偶校验,其余参数不变.</li>
-<li>两台主机发送操作步骤如上.</li>
-<li>观察两台主机的接收区域显示</li>
-</ul>
-<p>两台主机都正确收到了数据.校验方式必须接发方保持一致,才能确保数据传递的正确性.</p>
-</li>
-</ol>
-<h2 id="实验结论"><a href="#实验结论" class="headerlink" title="实验结论"></a>实验结论</h2><ol>
-<li>异步串行通信工作原理，即通过逐位传输二进制数据，不需要时间基准的协调，可以实现数据的传输。</li>
-<li>字符的传输方式以及电压状态的表示，包括空闲状态、数位0和数位1的电压表示,是串行通信中常见的标准之一。</li>
-<li>奇偶校验在串行通信中扮演着重要的角色，可以帮助检测数据传输中的错误。</li>
-<li>奇校验要求码字中的数位1的个数是奇数，偶校验要求码字中的数位1的个数是偶数。</li>
-<li>在实际应用中，通信双方必须保持一致的校验方式，以确保可靠的数据传输。</li>
-</ol>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-10-25T07:46:34.000Z" title="2023/10/25 15:46:34">2023-10-25</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-10-25T08:01:22.249Z" title="2023/10/25 16:01:22">2023-10-25</time></span><span class="level-item">7 minutes read (About 1097 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/10/25/EthernetLab/">EthernetLab</a></p><div class="content"><h1 id="以太网组网实验"><a href="#以太网组网实验" class="headerlink" title="以太网组网实验"></a>以太网组网实验</h1><h5 id="实验时间：2023-10-20"><a href="#实验时间：2023-10-20" class="headerlink" title="实验时间：2023.10.20"></a>实验时间：2023.10.20</h5><h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><p>​    物理网络是由多个节点连接起来的网络,是构成互联网的重要部分,可以互相传输数据。本实验使用以太网交换机来建立一个独立的物理网络，它使用双绞线作为传输介质。这个实验旨在观察和测试网络节点之间的通信情况。具体目的如下:</p>
+</ol></div><a class="article-more button is-small is-size-7" href="/2023/10/25/dataExamineLab/#more">Read more</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-10-25T07:46:34.000Z" title="2023/10/25 15:46:34">2023-10-25</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-10-25T08:01:22.249Z" title="2023/10/25 16:01:22">2023-10-25</time></span><span class="level-item">7 minutes read (About 1097 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/10/25/EthernetLab/">EthernetLab</a></p><div class="content"><h1 id="以太网组网实验"><a href="#以太网组网实验" class="headerlink" title="以太网组网实验"></a>以太网组网实验</h1><h5 id="实验时间：2023-10-20"><a href="#实验时间：2023-10-20" class="headerlink" title="实验时间：2023.10.20"></a>实验时间：2023.10.20</h5><h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><p>​    物理网络是由多个节点连接起来的网络,是构成互联网的重要部分,可以互相传输数据。本实验使用以太网交换机来建立一个独立的物理网络，它使用双绞线作为传输介质。这个实验旨在观察和测试网络节点之间的通信情况。具体目的如下:</p>
 <ol>
 <li>了解局域网的组成和功能。</li>
 <li>掌握以太网的配置和连接方法。</li>
